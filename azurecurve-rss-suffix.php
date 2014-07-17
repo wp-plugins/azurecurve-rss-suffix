@@ -3,7 +3,7 @@
 Plugin Name: azurecurve RSS Suffix
 Plugin URI: http://wordpress.azurecurve.co.uk/plugins/rss-suffix/
 Description: Add a suffix to rss entries
-Version: 1.0.0
+Version: 1.0.1
 Author: azurecurve
 Author URI: http://wordpress.azurecurve.co.uk/
 
@@ -71,6 +71,7 @@ add_filter('the_excerpt_rss', 'agentwp_append_rss_suffix');
 add_filter('the_content', 'agentwp_append_rss_suffix');
 
 function agentwp_append_rss_suffix($content) {
+	global $post;
 	
 	if(is_feed()){
 		$options = get_option( 'azc_rss_options' );
@@ -89,6 +90,8 @@ function agentwp_append_rss_suffix($content) {
 			$rss_suffix = str_replace('$site_url', get_site_url(), $rss_suffix);
 			$rss_suffix = str_replace('$site_title', get_bloginfo('name'), $rss_suffix);
 			$rss_suffix = str_replace('$site_tagline', get_bloginfo('description'), $rss_suffix);
+			$rss_suffix = str_replace('$post_url', get_permalink( $post->ID ), $rss_suffix);
+			$rss_suffix = str_replace('$post_title', $post->post_title, $rss_suffix);
 			$content = $content.'<p>'.$rss_suffix.'</p>';
 		}
 	}
@@ -148,7 +151,10 @@ function azc_rss_config_page() {
 					<p class="description">Set the default suffix for RSS. The following variables can be used;
 					<ol><li>$site_title</li>
 					<li>$site_tagline</li>
-					<li>$site_url</li></ol>
+					<li>$site_url</li>
+					<li>$post_url</li>
+					<li>$post_title</li></ol>
+					For example: <em>Read original post &lt;a href='$post_url'&gt;$post_title&lt;/a&gt; at &lt;a href='$site_url'&gt;$site_title|$site_tagline&lt;/a&gt;</em>
 					</p>
 				</td></tr>
 				</table>
