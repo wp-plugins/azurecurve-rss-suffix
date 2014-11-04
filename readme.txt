@@ -5,8 +5,8 @@ Author URI: http://wordpress.azurecurve.co.uk/
 Plugin URI: http://wordpress.azurecurve.co.uk/plugins/rss-suffix/
 Tags: rss, multisite
 Requires at least: 3.3
-Tested up to: 3.9.1
-Stable tag: 1.0.2
+Tested up to: 4.0.0
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,8 @@ To install the plugin copy the <em>azurcurve-rss-suffix</em> folder into your pl
 
 == Changelog ==
 Changes and feature additions for the RSS Suffix plugin:
+= 1.0.3 =
+* WordPress 4 Compatible
 = 1.0.2 =
 * Fixed security issue
 = 1.0.1 =

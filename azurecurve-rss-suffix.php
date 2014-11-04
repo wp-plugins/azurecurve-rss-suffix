@@ -3,7 +3,7 @@
 Plugin Name: azurecurve RSS Suffix
 Plugin URI: http://wordpress.azurecurve.co.uk/plugins/rss-suffix/
 Description: Add a suffix to rss entries
-Version: 1.0.2
+Version: 1.0.3
 Author: azurecurve
 Author URI: http://wordpress.azurecurve.co.uk/
 
