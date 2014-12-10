@@ -1,0 +1,57 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: azurecurve-rss-suffix\n"
+"POT-Creation-Date: 2014-11-29 10:54-0000\n"
+"PO-Revision-Date: 2014-11-29 10:54-0000\n"
+"Last-Translator: azurecurve WordPress Development <wordpress@azurecurve.co."
+"uk>\n"
+"Language-Team: azurecurve WordPress Development <wordpress@azurecurve.co."
+"uk>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: ..\\\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;sprintf;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: azurecurve-rss-suffix.php:135
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: azurecurve-rss-suffix.php:143 azurecurve-rss-suffix.php:224
+msgid "Configuration"
+msgstr ""
+
+#: azurecurve-rss-suffix.php:152 azurecurve-rss-suffix.php:233
+msgid ""
+"Set the suffix to be added to all items in the RSS feed. If multisite being "
+"used leave this suffix blank to get multisite default."
+msgstr ""
+
+#: azurecurve-rss-suffix.php:154
+msgid "RSS Suffix"
+msgstr ""
+
+#: azurecurve-rss-suffix.php:156 azurecurve-rss-suffix.php:237
+msgid "Set the default suffix for RSS. The following variables can be used;"
+msgstr ""
+
+#: azurecurve-rss-suffix.php:162
+msgid "For example:"
+msgstr ""
+
+#: azurecurve-rss-suffix.php:162
+#, php-format
+msgid "Read original post %1$s at %2$s"
+msgstr ""
+
+#: azurecurve-rss-suffix.php:181
+msgid "You do not have permissions for this action"
+msgstr ""
+
+#: azurecurve-rss-suffix.php:235
+msgid "Default RSS Suffix"
+msgstr ""

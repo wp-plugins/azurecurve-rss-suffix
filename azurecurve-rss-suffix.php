@@ -2,10 +2,15 @@
 /*
 Plugin Name: azurecurve RSS Suffix
 Plugin URI: http://wordpress.azurecurve.co.uk/plugins/rss-suffix/
+
 Description: Add a suffix to rss entries
-Version: 1.0.3
+Version: 1.0.4
+
 Author: azurecurve
 Author URI: http://wordpress.azurecurve.co.uk/
+
+Text Domain: azurecurve-rss-suffix
+Domain Path: /languages
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -23,6 +28,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 The full copy of the GNU General Public License is available here: http://www.gnu.org/licenses/gpl.txt
  */
+
+add_action('plugins_loaded', 'azc_rss_load_plugin_textdomain');
+
+function azc_rss_load_plugin_textdomain(){
+	
+	$loaded = load_plugin_textdomain( 'azurecurve-rss-suffix', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	//if ($loaded){ echo 'true'; }else{ echo 'false'; }
+}
 
 register_activation_hook( __FILE__, 'azc_rss_set_default_options' );
 
@@ -127,7 +140,7 @@ function azc_rss_settings_menu() {
 
 function azc_rss_config_page() {
 	if (!current_user_can('manage_options')) {
-        wp_die('You do not have sufficient permissions to access this page.');
+        wp_die(__('You do not have sufficient permissions to access this page.', 'azurecurve-rss-suffix'));
     }
 	
 	// Retrieve plugin configuration options from database
@@ -135,7 +148,7 @@ function azc_rss_config_page() {
 	?>
 	<div id="azc-rss-general" class="wrap">
 		<fieldset>
-			<h2>azurecurve RSS Suffix Configuration</h2>
+			<h2>azurecurve RSS Suffix <?php _e('Configuration', 'azurecurve-rss-suffix'); ?></h2>
 			<form method="post" action="admin-post.php">
 				<input type="hidden" name="action" value="save_azc_rss_options" />
 				<input name="page_options" type="hidden" value="rss_suffix" />
@@ -144,17 +157,17 @@ function azc_rss_config_page() {
 				<?php wp_nonce_field( 'azc_rss' ); ?>
 				<table class="form-table">
 				<tr><td colspan=2>
-					<p>Set the suffix to be added to all items in the RSS feed. If multisite being used leave this suffix blank to get multisite default.</p>
+					<p><?php _e('Set the suffix to be added to all items in the RSS feed. If multisite being used leave this suffix blank to get multisite default.', 'azurecurve-rss-suffix'); ?></p>
 				</td></tr>
-				<tr><th scope="row"><label for="width">RSS Suffix</label></th><td>
+				<tr><th scope="row"><label for="width"><?php _e('RSS Suffix', 'azurecurve-rss-suffix'); ?></label></th><td>
 					<textarea name="rss_suffix" rows="4" cols="50" id="rss_suffix" class="regular-text code"><?php echo stripslashes($options['rss_suffix'])?></textarea>
-					<p class="description">Set the default suffix for RSS. The following variables can be used;
+					<p class="description"><?php _e('Set the default suffix for RSS. The following variables can be used;', 'azurecurve-rss-suffix'); ?>
 					<ol><li>$site_title</li>
 					<li>$site_tagline</li>
 					<li>$site_url</li>
 					<li>$post_url</li>
 					<li>$post_title</li></ol>
-					For example: <em>Read original post &lt;a href='$post_url'&gt;$post_title&lt;/a&gt; at &lt;a href='$site_url'&gt;$site_title|$site_tagline&lt;/a&gt;</em>
+					<?php _e('For example:', 'azurecurve-rss-suffix'); ?> <em><?php _e(sprintf('Read original post %1$s at %2$s', "&lt;a href='$post_url'&gt;$post_title&lt;/a&gt;", "&lt;a href='$site_url'&gt;$site_title|$site_tagline&lt;/a&gt;"), 'azurecurve-rss-suffix'); ?></em>
 					</p>
 				</td></tr>
 				</table>
@@ -173,7 +186,7 @@ function azc_rss_admin_init() {
 function process_azc_rss_options() {
 	// Check that user has proper security level
 	if ( !current_user_can( 'manage_options' ) ){
-		wp_die( 'Not allowed' );
+		wp_die( __('You do not have permissions for this action', 'azurecurve-rss-suffix'));
 	}
 	// Check that nonce field created in configuration form is present
 	check_admin_referer( 'azc_rss' );
@@ -216,7 +229,7 @@ function azc_rss_network_settings_page(){
 	?>
 	<div id="azc-rss-general" class="wrap">
 		<fieldset>
-			<h2>azurecurve RSS Suffix Network Configuration</h2>
+			<h2>azurecurve RSS Suffix Network <?php _e('Configuration', 'azurecurve-rss-suffix'); ?></h2>
 			<form method="post" action="admin-post.php">
 				<input type="hidden" name="action" value="save_azc_rss_options" />
 				<input name="page_options" type="hidden" value="suffix" />
@@ -225,11 +238,11 @@ function azc_rss_network_settings_page(){
 				<?php wp_nonce_field( 'azc_rss' ); ?>
 				<table class="form-table">
 				<tr><td colspan=2>
-					<p>Set the suffix to be added to all items in the RSS feed. If multisite being used leave this suffix blank to get multisite default.</p>
+					<p><?php _e('Set the suffix to be added to all items in the RSS feed. If multisite being used leave this suffix blank to get multisite default.', 'azurecurve-rss-suffix'); ?></p>
 				</td></tr>
-				<tr><th scope="row"><label for="width">Default RSS Suffix</label></th><td>
+				<tr><th scope="row"><label for="width"><?php _e('Default RSS Suffix', 'azurecurve-rss-suffix'); ?></label></th><td>
 					<textarea name="rss_suffix" rows="4" cols="50" id="rss_suffix" class="regular-text code"><?php echo stripslashes($options['rss_suffix'])?></textarea>
-					<p class="description">Set the default suffix for RSS. The following variables can be used;
+					<p class="description"><?php _e('Set the default suffix for RSS. The following variables can be used;', 'azurecurve-rss-suffix'); ?>
 					<ol><li>$site_title</li>
 					<li>$site_tagline</li>
 					<li>$site_url</li></ol>
